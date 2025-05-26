@@ -1,117 +1,49 @@
-import Boton from './components/Boton'
+import React from 'react'
+import { useCalculator } from './hooks/useCalculator'
+import Button from './components/Button'
+import Display from './components/Display'
 import './App.css'
 
-
-function App() {
-
-  const manejarClickNumeros = (e) => {
-    const boton = e.target;
-    console.log(boton.textContent);
-    let display = document.getElementById('display');
-    display.value = display.value+ boton.textContent;
-  }
-
-  const calcular = () => {
-    let display = document.getElementById('display');
-    display.value = eval(display.value);
-  }
-  const clear = () => {
-    let display = document.getElementById('display');
-    display.value = '';
-  }
+const App = () => {
+  const { 
+    display, 
+    inputNumber, 
+    inputDecimal, 
+    performOperation, 
+    toggleSign, 
+    clear, 
+    equals 
+  } = useCalculator()
 
   return (
     <div className="contenedor">
       <div className="pad">
-        <input className='display' type='text' id='display' />
-        <Boton 
-          texto="1" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="2" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="3" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="+" 
-          operacion={manejarClickNumeros}
-          tipo="operacion"
-        />
-        <Boton 
-          texto="4" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="5" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="6" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="-" 
-          operacion={manejarClickNumeros}
-          tipo="operacion"
-        />
-        <Boton 
-          texto="7" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="8" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="9" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="*" 
-          operacion={manejarClickNumeros}
-          tipo="operacion"
-        />
-        <Boton 
-          texto="=" 
-          operacion={calcular}
-          tipo="normal"
-        />
-        <Boton 
-          texto="0" 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="." 
-          operacion={manejarClickNumeros}
-          tipo="normal"
-        />
-        <Boton 
-          texto="/" 
-          operacion={manejarClickNumeros}
-          tipo="operacion"
-        />
-        <Boton 
-          texto="Clear" 
-          operacion={clear}
-          tipo="clear"
-        />
-        </div>
+        <Display value={display} />
+        <Button text="Clear" onClick={clear} type="clear" />
+        <Button text="+/-" onClick={toggleSign} type="function" />
+        <Button text="%" onClick={() => performOperation('%')} type="operation" />
+        <Button text="7" onClick={() => inputNumber('7')} />
+        <Button text="8" onClick={() => inputNumber('8')} />
+        <Button text="9" onClick={() => inputNumber('9')} />
+        <Button text="/" onClick={() => performOperation('/')} type="operation" />
+        <Button text="4" onClick={() => inputNumber('4')} />
+        <Button text="5" onClick={() => inputNumber('5')} />
+        <Button text="6" onClick={() => inputNumber('6')} />
+        <Button text="*" onClick={() => performOperation('*')} type="operation" />
+        <Button text="1" onClick={() => inputNumber('1')} />
+        <Button text="2" onClick={() => inputNumber('2')} />
+        <Button text="3" onClick={() => inputNumber('3')} />
+        <Button text="-" onClick={() => performOperation('-')} type="operation" />
+        <Button text="0" onClick={() => inputNumber('0')} />
+        <Button text="." onClick={inputDecimal} />
+        <Button text="=" onClick={equals} type="equals" />
+        <Button text="+" onClick={() => performOperation('+')} type="operation" />
+      </div>
     </div>
+  )
+}
 
+export default App
   )
 }
 
