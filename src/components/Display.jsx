@@ -1,4 +1,4 @@
-import './Display.css'
+import "../stylesheets/Display.css"
 
 const Display = ({ value }) => (
   <input 
