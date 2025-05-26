@@ -17,10 +17,11 @@ const Boton = ({ text, onClick, type = 'normal' }) => {
   }
 
   return (
-    <button className={getButtonClass()} onClick={onClick}>
+    <boton className={getBotonClass()} onClick={onClick}>
       {text}
-    </button>
+    </boton>
   )
 }
 
 export default Boton
+
