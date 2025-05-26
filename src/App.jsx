@@ -1,5 +1,5 @@
 import { useCalculator } from './hooks/useCalculator'
-import Button from './components/Button'
+import Buton from './components/Buton'
 import Display from './components/Display'
 import './App.css'
 
